@@ -1,0 +1,25 @@
+# Large/local files
+mlflow_results/
+data/*.csv
+data/*.pkl
+*.pkl.bak
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# Environment
+.env
+.venv/
+venv/
+
+# OS/Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Streamlit
+.streamlit/secrets.toml
