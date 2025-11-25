@@ -1,0 +1,38 @@
+{
+  "model_type": "xgboost",
+  "model_file": "xgboost_model_full.pkl",
+  "scaler_file": "scaler_full.pkl",
+  "features_file": "feature_columns.json",
+  "n_features": 33,
+  "training_samples": 3798720,
+  "test_samples": 817780,
+  "metrics": {
+    "rmse": 6.4007553727697655,
+    "mae": 1.7480486631393433,
+    "bias": -0.43676629662513733,
+    "mape_nonzero": 56.670143127441406
+  },
+  "training_period": {
+    "start": "2013-10-01",
+    "end": "2014-02-21",
+    "gap_days": 7
+  },
+  "test_period": {
+    "start": "2014-03-01",
+    "end": "2014-03-31"
+  },
+  "hyperparameters": {
+    "n_estimators": 500,
+    "max_depth": 6,
+    "learning_rate": 0.1,
+    "subsample": 0.8,
+    "colsample_bytree": 0.8,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "decision_applied": [
+    "DEC-013",
+    "DEC-014",
+    "DEC-016"
+  ]
+}

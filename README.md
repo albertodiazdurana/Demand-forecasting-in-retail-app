@@ -4,27 +4,33 @@ Interactive demand forecasting application for Corporación Favorita grocery sto
 
 ## Live Demo
 
-🚀 **[Launch App](https://[deployment-url].streamlit.app)** *(link pending deployment)*
+🚀 **[Launch App](https://[deployment-url].streamlit.app)** *(deployment pending)*
+
+## Screenshot
+
+![Streamlit App](docs/streamlit_app_screenshot.png)
 
 ## Overview
 
-This Streamlit application provides sales forecasts for grocery products using a machine learning model trained on 4.8M historical transactions.
+This Streamlit application provides sales forecasts for grocery products using a production XGBoost model trained on 4.8M historical transactions.
 
 **Related Repository:** [Demand-forecasting-in-retail](https://github.com/albertodiazdurana/Demand-forecasting-in-retail) - Full analysis and model development.
 
 ## Features
 
-- Select store and product family
-- Single day or N-day forecasts (up to 30 days)
-- Historical sales + forecast visualization
-- Download forecast as CSV
+- ✅ Model loaded and ready
+- 🚧 Store and product selection (coming soon)
+- 🚧 Single day / N-day forecasts (coming soon)
+- 🚧 Historical sales + forecast visualization (coming soon)
+- 🚧 Download forecast as CSV (coming soon)
 
 ## Model Performance
 
 | Metric | Value |
 |--------|-------|
-| Model | TBD (XGBoost or LSTM) |
-| RMSE | TBD |
+| Model | XGBoost |
+| RMSE | 6.4008 |
+| MAE | 1.7480 |
 | Training Data | 3.8M rows (Oct 2013 - Feb 2014) |
 | Test Data | 818K rows (March 2014) |
 
@@ -33,21 +39,41 @@ This Streamlit application provides sales forecasts for grocery products using a
 Demand-forecasting-in-retail-app/
 ├── app/
 │   ├── main.py          # Streamlit UI
-│   └── config.py        # Configuration
+│   ├── config.py        # Configuration
+│   └── __init__.py
 ├── model/
-│   └── model_utils.py   # Model loading
+│   ├── model_utils.py   # Model loading
+│   └── __init__.py
 ├── data/
-│   └── data_utils.py    # Data processing
-├── artifacts/           # Model files
+│   ├── data_utils.py    # Data processing
+│   └── __init__.py
+├── artifacts/           # Model files (2.1 MB)
+│   ├── xgboost_model_full.pkl
+│   ├── scaler_full.pkl
+│   ├── feature_columns.json
+│   └── model_config_full.json
+├── docs/
+│   └── streamlit_app_screenshot.png
 ├── requirements.txt
+├── .gitignore
 └── README.md
 ```
 
 ## Local Development
+
+### Prerequisites
+- Python 3.11
+- Virtual environment
+
+### Setup
 ```bash
 # Clone repository
 git clone https://github.com/albertodiazdurana/Demand-forecasting-in-retail-app.git
 cd Demand-forecasting-in-retail-app
+
+# Create virtual environment
+python3 -m venv .venv
+source .venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
@@ -56,16 +82,34 @@ pip install -r requirements.txt
 streamlit run app/main.py
 ```
 
+App will open at http://localhost:8501
+
 ## Configuration
 
-Edit `app/config.py` to update:
+Edit `app/config.py` to customize:
 - Model paths
-- Store list
-- Forecast date range
+- Store list (10 Guayas stores)
+- Forecast date range (Jan-Mar 2014)
+- Feature columns (33 features)
 
-## Screenshots
+## Model Details
 
-*(Add after deployment)*
+**Training Configuration:**
+- Period: Oct 1, 2013 - Feb 21, 2014
+- Gap: 7 days (DEC-013)
+- Features: 33 (DEC-014)
+- Hyperparameters: max_depth=6, n_estimators=500
+
+**Top 5 Features:**
+1. unit_sales_7d_avg (6.43)
+2. unit_sales_lag1_7d_corr (1.96)
+3. unit_sales_lag1 (1.64)
+4. item_avg_sales (0.30)
+5. unit_sales_14d_avg (0.23)
+
+## Deployment (Coming in Week 4 Day 3)
+
+App will be deployed to Streamlit Community Cloud.
 
 ## License
 
@@ -75,3 +119,9 @@ MIT License
 
 - Data: [Kaggle Corporación Favorita Competition](https://www.kaggle.com/c/favorita-grocery-sales-forecasting)
 - Course: Time Series Forecasting
+- Model: Developed in [main analysis repository](https://github.com/albertodiazdurana/Demand-forecasting-in-retail)
+
+## Author
+
+Alberto Diaz Durana  
+[GitHub](https://github.com/albertodiazdurana) | [LinkedIn](https://www.linkedin.com/in/albertodiazdurana/)
