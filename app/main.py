@@ -113,6 +113,23 @@ def autoregressive_forecast(model, history, feature_columns, n_days):
 st.title("🛒 Demand Forecasting")
 st.subheader("Corporación Favorita - Guayas Region")
 
+# Help button
+with st.popover("ℹ️ How to Use"):
+    st.markdown("""
+    **Quick Start:**
+    1. Select a **Store** and **Item** in the sidebar
+    2. Choose a **Forecast Date** (cutoff point)
+    3. Pick **Single Day** or **Multi-Day** mode
+    4. Click **Generate Forecast**
+    
+    **Features:**
+    - 📈 View historical sales + forecast chart
+    - 📋 See detailed prediction table
+    - 📥 Download forecast as CSV
+    
+    **Note:** Forecasts use an XGBoost model trained on 3.8M transactions from Guayas stores.
+    """)
+
 # Load everything
 model, scaler, config = load_artifacts()
 df, lookup = load_data()
