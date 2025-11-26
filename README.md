@@ -8,7 +8,7 @@ Interactive demand forecasting application for Corporación Favorita grocery sto
 
 ## Screenshot
 
-![Streamlit App](docs/streamlit_app_screenshot.png)
+![Streamlit App](docs/demand-forecasting-in-retail-app.streamlit.app_.png)
 
 ## Overview
 
