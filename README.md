@@ -4,7 +4,7 @@ Interactive demand forecasting application for Corporación Favorita grocery sto
 
 ## Live Demo
 
-🚀 **[Launch App](https://demand-forecasting-in-retail-app.streamlit.app)** *(LIVE)*
+🚀 **[Launch App](https://demand-forecasting-in-retail-app.streamlit.app)** (LIVE)
 
 ## Screenshot
 
@@ -12,17 +12,18 @@ Interactive demand forecasting application for Corporación Favorita grocery sto
 
 ## Overview
 
-This Streamlit application provides sales forecasts for grocery products using a production XGBoost model trained on 4.8M historical transactions.
+This Streamlit application provides sales forecasts for grocery products using a production XGBoost model trained on 3.8M historical transactions.
 
 **Related Repository:** [Demand-forecasting-in-retail](https://github.com/albertodiazdurana/Demand-forecasting-in-retail) - Full analysis and model development.
 
 ## Features
 
-- ✅ Model loaded and ready
-- 🚧 Store and product selection (coming soon)
-- 🚧 Single day / N-day forecasts (coming soon)
-- 🚧 Historical sales + forecast visualization (coming soon)
-- 🚧 Download forecast as CSV (coming soon)
+- ✅ Store and product selection (10 stores, 20 items)
+- ✅ Single day / Multi-day forecasts (up to 30 days)
+- ✅ Historical sales + forecast visualization
+- ✅ Autoregressive forecasting (updates lag features)
+- ✅ Download forecast as CSV
+- ✅ Help popover with usage instructions
 
 ## Model Performance
 
@@ -46,6 +47,8 @@ Demand-forecasting-in-retail-app/
 │   └── __init__.py
 ├── data/
 │   ├── data_utils.py    # Data processing
+│   ├── sample_forecast_data.pkl
+│   ├── store_item_lookup.csv
 │   └── __init__.py
 ├── artifacts/           # Model files (2.1 MB)
 │   ├── xgboost_model_full.pkl
@@ -53,7 +56,7 @@ Demand-forecasting-in-retail-app/
 │   ├── feature_columns.json
 │   └── model_config_full.json
 ├── docs/
-│   └── streamlit_app_screenshot.png
+│   └── demand-forecasting-in-retail-app.streamlit.app_.png
 ├── requirements.txt
 ├── .gitignore
 └── README.md
@@ -84,13 +87,14 @@ streamlit run app/main.py
 
 App will open at http://localhost:8501
 
-## Configuration
+## How to Use
 
-Edit `app/config.py` to customize:
-- Model paths
-- Store list (10 Guayas stores)
-- Forecast date range (Jan-Mar 2014)
-- Feature columns (33 features)
+1. **Select Store** - Choose from 10 Guayas stores
+2. **Select Item** - Pick a product (filtered by store)
+3. **Set Forecast Date** - Choose cutoff point
+4. **Choose Mode** - Single Day or Multi-Day (1-30 days)
+5. **Generate Forecast** - Click button to run prediction
+6. **Download CSV** - Export results for planning
 
 ## Model Details
 
@@ -106,10 +110,6 @@ Edit `app/config.py` to customize:
 3. unit_sales_lag1 (1.64)
 4. item_avg_sales (0.30)
 5. unit_sales_14d_avg (0.23)
-
-## Deployment (Coming in Week 4 Day 3)
-
-App will be deployed to Streamlit Community Cloud.
 
 ## License
 
