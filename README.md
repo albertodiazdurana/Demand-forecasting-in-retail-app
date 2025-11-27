@@ -55,6 +55,9 @@ Demand-forecasting-in-retail-app/
 │   ├── scaler_full.pkl
 │   ├── feature_columns.json
 │   └── model_config_full.json
+├── tests/               # Unit tests
+│   ├── test_data_utils.py
+│   └── test_model_utils.py
 ├── docs/
 │   └── demand-forecasting-in-retail-app.streamlit.app_.png
 ├── requirements.txt
@@ -86,6 +89,15 @@ streamlit run app/main.py
 ```
 
 App will open at http://localhost:8501
+
+### Running Tests
+```bash
+# Run all tests
+python -m pytest tests/ -v
+
+# Run with coverage
+python -m pytest tests/ -v --cov=data --cov=model
+```
 
 ## How to Use
 
