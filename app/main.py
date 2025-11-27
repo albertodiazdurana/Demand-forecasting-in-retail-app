@@ -17,7 +17,7 @@ from app.config import (
 from model.model_utils import load_model, load_scaler, load_config
 from data.data_utils import (
     load_sample_data, load_lookup_table, get_stores,
-    get_items_for_store, get_history, prepare_features_for_prediction
+    get_items_for_store, get_history
 )
 
 st.set_page_config(

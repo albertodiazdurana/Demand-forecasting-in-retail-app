@@ -1,6 +1,5 @@
 """Data loading and feature engineering utilities."""
 import pandas as pd
-import numpy as np
 from pathlib import Path
 
 def load_sample_data(data_path):
@@ -66,25 +65,6 @@ def get_history(df, store_nbr, item_nbr, end_date=None, days=180):
         history = history.tail(days)
     
     return history
-
-def prepare_features_for_prediction(history, feature_columns):
-    """Prepare feature array for model prediction.
-    
-    Args:
-        history: Historical data DataFrame
-        feature_columns: List of feature column names
-        
-    Returns:
-        numpy array with features for last row
-    """
-    if len(history) == 0:
-        return None
-    
-    # Get latest row with all features
-    latest = history.tail(1)
-    X = latest[feature_columns].values
-    
-    return X.astype(np.float32)
 
 def generate_forecast_dates(start_date, n_days):
     """Generate list of forecast dates.
