@@ -330,7 +330,7 @@ if generate_forecast:
 
 else:
     # Show historical data when no forecast generated
-    st.subheader("�� Historical Sales")
+    st.subheader("Historical Sales")
 
     fig, ax = plt.subplots(figsize=(12, 5))
     ax.plot(history["date"], history["unit_sales"], color="#3498db")
