@@ -10,3 +10,4 @@ xgboost>=2.0.0
 
 # Development
 pytest>=8.0.0
+ruff>=0.8.0

@@ -1,9 +1,8 @@
 """Tests for model_utils module."""
-import pytest
+
 import json
 import numpy as np
-from pathlib import Path
-from unittest.mock import Mock, patch, mock_open
+from unittest.mock import Mock
 
 from model.model_utils import (
     load_feature_columns,
@@ -17,8 +16,8 @@ class TestLoadFeatureColumns:
 
     def test_loads_json_list(self, tmp_path):
         """Should load feature columns from JSON file."""
-        features = ['feature1', 'feature2', 'feature3']
-        file_path = tmp_path / 'features.json'
+        features = ["feature1", "feature2", "feature3"]
+        file_path = tmp_path / "features.json"
         file_path.write_text(json.dumps(features))
 
         result = load_feature_columns(file_path)
@@ -26,8 +25,8 @@ class TestLoadFeatureColumns:
 
     def test_returns_list(self, tmp_path):
         """Should return a list."""
-        features = ['col1', 'col2']
-        file_path = tmp_path / 'features.json'
+        features = ["col1", "col2"]
+        file_path = tmp_path / "features.json"
         file_path.write_text(json.dumps(features))
 
         result = load_feature_columns(file_path)
@@ -35,8 +34,8 @@ class TestLoadFeatureColumns:
 
     def test_handles_empty_list(self, tmp_path):
         """Should handle empty feature list."""
-        file_path = tmp_path / 'features.json'
-        file_path.write_text('[]')
+        file_path = tmp_path / "features.json"
+        file_path.write_text("[]")
 
         result = load_feature_columns(file_path)
         assert result == []
@@ -48,11 +47,11 @@ class TestLoadConfig:
     def test_loads_config_dict(self, tmp_path):
         """Should load config from JSON file."""
         config = {
-            'model_type': 'xgboost',
-            'metrics': {'rmse': 6.4, 'mae': 3.2},
-            'training_samples': 100000
+            "model_type": "xgboost",
+            "metrics": {"rmse": 6.4, "mae": 3.2},
+            "training_samples": 100000,
         }
-        file_path = tmp_path / 'config.json'
+        file_path = tmp_path / "config.json"
         file_path.write_text(json.dumps(config))
 
         result = load_config(file_path)
@@ -60,8 +59,8 @@ class TestLoadConfig:
 
     def test_returns_dict(self, tmp_path):
         """Should return a dictionary."""
-        config = {'key': 'value'}
-        file_path = tmp_path / 'config.json'
+        config = {"key": "value"}
+        file_path = tmp_path / "config.json"
         file_path.write_text(json.dumps(config))
 
         result = load_config(file_path)
@@ -70,16 +69,16 @@ class TestLoadConfig:
     def test_preserves_nested_structure(self, tmp_path):
         """Should preserve nested config structure."""
         config = {
-            'model': {
-                'type': 'xgboost',
-                'params': {'max_depth': 6, 'learning_rate': 0.1}
+            "model": {
+                "type": "xgboost",
+                "params": {"max_depth": 6, "learning_rate": 0.1},
             }
         }
-        file_path = tmp_path / 'config.json'
+        file_path = tmp_path / "config.json"
         file_path.write_text(json.dumps(config))
 
         result = load_config(file_path)
-        assert result['model']['params']['max_depth'] == 6
+        assert result["model"]["params"]["max_depth"] == 6
 
 
 class TestPredict:
